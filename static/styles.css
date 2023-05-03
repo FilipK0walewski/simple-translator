@@ -1,0 +1,166 @@
+:root {
+    --bg-0: #292524;
+    --bg-1: #1c1917;
+    --bg-2: #44403c;
+    --font-0: #fafaf9;
+    --color-0: #4338ca;
+}
+
+body {
+    overflow-x: hidden;
+    margin: 0 !important;
+    background-color: var(--bg-0);
+    font-family: -apple-system,
+        BlinkMacSystemFont,
+        avenir next,
+        avenir,
+        segoe ui,
+        helvetica neue,
+        helvetica,
+        Cantarell,
+        Ubuntu,
+        roboto,
+        noto,
+        arial,
+        sans-serif
+}
+
+header {
+    width: 100%;
+    background-color: var(--bg-1);
+    padding: 1rem;
+}
+
+header a {
+    color: var(--font-0);
+    font-size: 1.25rem;
+}
+
+main {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1024px;
+    padding: 0 1rem;
+}
+
+form {
+    width: 100%;
+
+}
+
+select {
+    background-color: var(--bg-2);
+    color: var(--font-0);
+    border: none;
+    padding: .5rem 1rem;
+    font-size: 1rem;
+    min-width: 100px !important;
+}
+
+form button {
+    cursor: pointer;
+    background-color: var(--bg-2);
+    border: none;
+    padding: .5rem 1rem;
+    color: var(--font-0);
+    font-size: 1.25rem;
+    transition: .1s all ease-in-out;
+}
+
+form button:hover {
+    background-color: var(--color-0);
+}
+
+.inputs {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    margin: 1rem 0;
+}
+
+.inputs>*+* {
+    margin-top: 1rem;
+}
+
+.box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.box>*+* {
+    margin-top: 1rem;
+}
+
+select {
+    width: max-content;
+    min-width: 4rem;
+}
+
+.input-div {
+    position: relative;
+    width: 100%;
+    min-height: 12rem;
+}
+
+.input-area {
+    position: absolute;
+}
+
+.input-area::placeholder {
+    opacity: 0%;
+}
+
+.input-label {
+    position: absolute;
+    color: var(--font-0);
+    font-size: 1.25rem;
+    top: 0;
+    left: 0;
+    transform: translate(25%, 40%);
+    transition: all .15s ease-in-out;
+    font-weight: bold;
+}
+
+.input-area:focus~.input-label {
+    transform: translate(15%, -50%);
+    font-size: 1rem;
+}
+
+:not(.input-area:placeholder-shown)~.input-label {
+    transform: translate(15%, -50%);
+    font-size: 1rem;
+}
+
+textarea {
+    resize: none;
+    width: 100%;
+    min-height: 12rem;
+    box-sizing: border-box;
+    border: 1px solid var(--bg-0);
+    color: var(--font-0);
+    font-size: 1.25rem;
+    padding: .5rem;
+    background-color: var(--bg-2);
+}
+
+textarea:focus {
+    outline: none;
+}
+
+@media all and (min-width: 1024px) {
+
+    main {
+        padding: 0;
+    }
+
+    .inputs {
+        flex-direction: row;
+    }
+
+    .inputs>*+* {
+        margin-top: 0;
+    }
+
+}
