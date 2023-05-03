@@ -1,6 +1,7 @@
 import aiohttp
 import aioredis
 import json
+import os
 import requests
 
 from fastapi import FastAPI, Form, Request
@@ -16,7 +17,9 @@ app = FastAPI()
 async def app_startup():
     global redis, session
     redis = aioredis.from_url("redis://localhost", decode_responses=True)
-    session = aiohttp.ClientSession(headers={'Authorization': 'DeepL-Auth-Key 09623770-cdcb-12f9-c7b1-db3a3b9d088a:fx'})
+    api_key = os.environ.get('DEEPL_API_KEY')
+    print(api_key)
+    session = aiohttp.ClientSession(headers={'Authorization': f'DeepL-Auth-Key {api_key}'})
 
 
 @app.on_event('shutdown')
