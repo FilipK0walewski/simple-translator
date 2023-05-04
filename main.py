@@ -16,9 +16,9 @@ app = FastAPI()
 @app.on_event('startup')
 async def app_startup():
     global redis, session
-    redis = aioredis.from_url("redis://localhost", decode_responses=True)
+    redis_host = os.environ.get('REDIS_HOST', 'localhost')
+    redis = aioredis.from_url(f'redis://{redis_host}', decode_responses=True)
     api_key = os.environ.get('DEEPL_API_KEY')
-    print(api_key)
     session = aiohttp.ClientSession(headers={'Authorization': f'DeepL-Auth-Key {api_key}'})
 
 
