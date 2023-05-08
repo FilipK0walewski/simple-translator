@@ -6,8 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/static/styles.css" rel="stylesheet">
-    <!--<link href="{{ url_for('static', path='/styles.css') }}" rel="stylesheet">-->
-    <!--<link rel="icon" type="image/x-icon" href="{{ url_for('static', path='/favicon.ico') }}">-->
     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
     <title>Simple Translator</title>
 </head>
@@ -20,13 +18,37 @@
         <form method="GET" action="/result">
             <div class="inputs">
                 <div class="box">
-                    <select required name="source_lang" id="source-lang">
-                        {% if source_lang==None %}
-                        <option selected value="">wybierz</option>
-                        {% endif %}
-                        <option {% if source_lang=="EN" %} selected {% endif %} value="EN">ENGLISH</option>
-                        <option {% if source_lang=="PL" %} selected {% endif %} value="PL">POLISH</option>
-                        <option {% if source_lang=="DE" %} selected {% endif %} value="DE">GERMAN</option>
+                    <select name="source_lang" id="source-lang">
+                        <option {% if source_lang==None %} selected {% endif %} selected value="">Detect language</option>
+                        <option {% if source_lang=="BG" %} selected {% endif %} value="BG">Bulgarian</option>
+                        <option {% if source_lang=="CS" %} selected {% endif %} value="CS">Czech</option>
+                        <option {% if source_lang=="DA" %} selected {% endif %} value="DA">Danish</option>
+                        <option {% if source_lang=="DE" %} selected {% endif %} value="DE">German</option>
+                        <option {% if source_lang=="EL" %} selected {% endif %} value="EL">Greek</option>
+                        <option {% if source_lang=="EN" %} selected {% endif %} value="EN">English</option>
+                        <option {% if source_lang=="ES" %} selected {% endif %} value="ES">Spanish</option>
+                        <option {% if source_lang=="ET" %} selected {% endif %} value="ET">Estonian</option>
+                        <option {% if source_lang=="FI" %} selected {% endif %} value="FI">Finnish</option>
+                        <option {% if source_lang=="FR" %} selected {% endif %} value="FR">French</option>
+                        <option {% if source_lang=="HU" %} selected {% endif %} value="HU">Hungarian</option>
+                        <option {% if source_lang=="ID" %} selected {% endif %} value="ID">Indonesian</option>
+                        <option {% if source_lang=="IT" %} selected {% endif %} value="IT">Italian</option>
+                        <option {% if source_lang=="JA" %} selected {% endif %} value="JA">Japanese</option>
+                        <option {% if source_lang=="KO" %} selected {% endif %} value="KO">Korean</option>
+                        <option {% if source_lang=="LT" %} selected {% endif %} value="LT">Lithuanian</option>
+                        <option {% if source_lang=="LV" %} selected {% endif %} value="LV">Latvian</option>
+                        <option {% if source_lang=="NB" %} selected {% endif %} value="NB">Norwegian (Bokmål)</option>
+                        <option {% if source_lang=="NL" %} selected {% endif %} value="NL">Dutch</option>
+                        <option {% if source_lang=="PL" %} selected {% endif %} value="PL">Polish</option>
+                        <option {% if source_lang=="PT" %} selected {% endif %} value="PT">Portuguese</option>
+                        <option {% if source_lang=="RO" %} selected {% endif %} value="RO">Romanian</option>
+                        <option {% if source_lang=="RU" %} selected {% endif %} value="RU">Russian</option>
+                        <option {% if source_lang=="SK" %} selected {% endif %} value="SK">Slovak</option>
+                        <option {% if source_lang=="SL" %} selected {% endif %} value="SL">Slovenian</option>
+                        <option {% if source_lang=="SV" %} selected {% endif %} value="SV">Swedish</option>
+                        <option {% if source_lang=="TR" %} selected {% endif %} value="TR">Turkish</option>
+                        <option {% if source_lang=="UK" %} selected {% endif %} value="UK">Ukrainian</option>
+                        <option {% if source_lang=="ZH" %} selected {% endif %} value="ZH">Chinese</option>
                     </select>
                     <div class="input-div">
                         <textarea maxlength="1000" class="input-area" id="user-input" spellcheck="false" name="text"
@@ -35,13 +57,38 @@
                     </div>
                 </div>
                 <div class="box">
-                    <select name="target_lang" id="target-lang">
-                        {% if target_lang==None %}
-                        <option selected value="">wybierz</option>
-                        {% endif %}
-                        <option {% if target_lang=="EN" %} selected {% endif %} value="EN">ENGLISH</option>
-                        <option {% if target_lang=="PL" %} selected {% endif %} value="PL">POLISH</option>
-                        <option {% if target_lang=="DE" %} selected {% endif %} value="DE">GERMAN</option>
+                    <select required name="target_lang" id="target-lang">
+                        <option {% if target_lang=="BG" %} selected {% endif %} value="BG"> Bulgarian</option>
+                        <option {% if target_lang=="CS" %} selected {% endif %} value="CS"> Czech</option>
+                        <option {% if target_lang=="DA" %} selected {% endif %} value="DA"> Danish</option>
+                        <option {% if target_lang=="DE" %} selected {% endif %} value="DE"> German</option>
+                        <option {% if target_lang=="EL" %} selected {% endif %} value="EL"> Greek</option>
+                        <option {% if target_lang=="EN-GB" %} selected {% endif %} value="EN-GB"> English (British)</option>
+                        <option {% if target_lang=="EN-US" %} selected {% endif %} value="EN-US"> English (American)</option>
+                        <option {% if target_lang=="ES" %} selected {% endif %} value="ES"> Spanish</option>
+                        <option {% if target_lang=="ET" %} selected {% endif %} value="ET"> Estonian</option>
+                        <option {% if target_lang=="FI" %} selected {% endif %} value="FI"> Finnish</option>
+                        <option {% if target_lang=="FR" %} selected {% endif %} value="FR"> French</option>
+                        <option {% if target_lang=="HU" %} selected {% endif %} value="HU"> Hungarian</option>
+                        <option {% if target_lang=="ID" %} selected {% endif %} value="ID"> Indonesian</option>
+                        <option {% if target_lang=="IT" %} selected {% endif %} value="IT"> Italian</option>
+                        <option {% if target_lang=="JA" %} selected {% endif %} value="JA"> Japanese</option>
+                        <option {% if target_lang=="KO" %} selected {% endif %} value="KO"> Korean</option>
+                        <option {% if target_lang=="LT" %} selected {% endif %} value="LT"> Lithuanian</option>
+                        <option {% if target_lang=="LV" %} selected {% endif %} value="LV"> Latvian</option>
+                        <option {% if target_lang=="NB" %} selected {% endif %} value="NB"> Norwegian (Bokmål)</option>
+                        <option {% if target_lang=="NL" %} selected {% endif %} value="NL"> Dutch</option>
+                        <option {% if target_lang==None or target_lang=="PL" %} selected {% endif %} value="PL"> Polish</option>
+                        <option {% if target_lang=="PT-BR" %} selected {% endif %} value="PT-BR"> Portuguese (Brazilian)</option>
+                        <option {% if target_lang=="PT-PT" %} selected {% endif %} value="PT-PT"> Portuguese</option>
+                        <option {% if target_lang=="RO" %} selected {% endif %} value="RO"> Romanian</option>
+                        <option {% if target_lang=="RU" %} selected {% endif %} value="RU"> Russian</option>
+                        <option {% if target_lang=="SK" %} selected {% endif %} value="SK"> Slovak</option>
+                        <option {% if target_lang=="SL" %} selected {% endif %} value="SL"> Slovenian</option>
+                        <option {% if target_lang=="SV" %} selected {% endif %} value="SV"> Swedish</option>
+                        <option {% if target_lang=="TR" %} selected {% endif %} value="TR"> Turkish</option>
+                        <option {% if target_lang=="UK" %} selected {% endif %} value="UK"> Ukrainian</option>
+                        <option {% if target_lang=="ZH" %} selected {% endif %} value="ZH"> Chinese (simplified)</option>
                     </select>
                     <div class="input-div">
                         <textarea class="input-area" readonly spellcheck="false"
