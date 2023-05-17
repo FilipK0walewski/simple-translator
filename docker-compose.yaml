@@ -7,14 +7,14 @@ services:
     environment:
       DEEPL_API_KEY: YOUR_API_KEY
       REDIS_HOST: redis
-      REDIS_PORT: 6379
+      REDIS_PORT: 6377
     depends_on:
       - redis
   redis:
     image: redis:alpine
     restart: always
     ports:
-      - "6379:6379"
+      - "6377:6379"
     volumes:
       - redis_data:/data
 volumes:
