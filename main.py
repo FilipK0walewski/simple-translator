@@ -2,9 +2,9 @@ import aiohttp
 import aioredis
 import json
 import os
-import requests
 
 from fastapi import FastAPI, Form, Request
+from fastapi.exceptions import HTTPException
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -39,7 +39,7 @@ async def translate(request: Request):
 
 
 @app.get('/result')
-async def get_result(request: Request, text: str, target_lang: str, source_lang: str | None = None):
+async def get_result(request: Request, text: str, target_lang: str | None = None, source_lang: str | None = None):
     key = f'tranlation.{source_lang}.{target_lang}.{text}'
     cached = await redis.get(key)
     if cached is not None:
@@ -58,3 +58,8 @@ async def get_result(request: Request, text: str, target_lang: str, source_lang:
             source_lang = data['translations'][0]['detected_source_language']
         await redis.set(key, json.dumps(data))
         return templates.TemplateResponse('index.html', {'request': request, 'input': text, 'result': data['translations'][0]['text'], 'target_lang': target_lang, 'source_lang': source_lang})
+
+
+@app.exception_handler(404)
+async def not_found(request: Request, exc: HTTPException):
+    return templates.TemplateResponse("index.html", {"request": request}, status_code=404)
