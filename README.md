@@ -12,7 +12,7 @@ export DEEPL_API_KEY=your_api_key
 uvicorn main:app --reload
 ```
 
-## using docker
+### using docker
 
 ```
 https://github.com/FilipK0walewski/simple-translator
@@ -21,4 +21,4 @@ change DEEPL_API_KEY envorontment variable in docker-compose.yaml
 docker compose up
 ```
 
-aplication should run on localhost:8000
+application should run on [localhost:8000](http://127.0.0.1:8000)
